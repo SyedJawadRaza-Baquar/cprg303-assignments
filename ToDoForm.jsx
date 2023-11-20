@@ -1,7 +1,15 @@
-import { StyleSheet, TextInput, View, Button } from 'react-native'
+import { StyleSheet, TextInput, View, Button, Alert } from 'react-native'
 import React, {useState} from 'react'
 
-export default function ToDoForm({addTask}) {
+export default function ToDoForm({addTask, tasks}) {
+  const handleAddTask = () => {
+    if (tasks.includes(taskText)) {
+      Alert.alert('Duplicate Task', 'This task already exists.');
+    } else {
+      addTask(taskText);
+      setTaskText('');
+    }
+  };
   const [taskText, setTaskText] = useState('');
   return (
     <View style={styles.form}>
@@ -12,7 +20,7 @@ export default function ToDoForm({addTask}) {
       value={taskText}
     />
     <Button title="Add Task"
-            onPress={() => addTask(taskText)}
+            onPress={handleAddTask}
      />
   </View>
   )

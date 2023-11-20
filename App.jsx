@@ -17,7 +17,7 @@ export default function App() {
     return(
         <SafeAreaView>
             <ToDoList tasks={tasks} />
-            <ToDoForm addTask={addTask}/>
+            <ToDoForm addTask={addTask} tasks={tasks}/>
         </SafeAreaView>
     );
 }
